@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html ng-app="singleApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Learn how to program - Single Modus</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+     <link href="single.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  <div id="page" class="container">
+  	<div class= "navbar navbar-default"  role="navigation" style="background-color: rgb(211,211,211); border-bottom-color: white;">
+  		<div class="container" style="background-color: rgb(211,211,211);" > 	
+  			<nav class="nav navbar-nav navbar-left">
+  				<a class="navbar-brand">Script Mode</a>
+                <a class="navbar-brand"><small>John Doe</small> </a>			 		
+  			</nav>
+  			<nav class="nav navbar-nav navbar-right">
+  				<div class="btn-group " >
+ 					<div class="btn-group " >
+ 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+ 							Help<span class="caret"></span></button>
+  							<ul class="dropdown-menu" role="menu">
+    							<li><a href="#">Program info</a></li>
+   								<li><a href="#">About</a></li>
+    							<li><a href="#">Function info</a></li>
+    							<li class="divider"></li>
+    							<li class="dropdown-header">Help from teacher</li>
+                            	<li><a href="#">Defined functions</a></li>
+ 						 	</ul>
+ 						 </div>
+ 					<div class="btn-group " >
+ 						<button type="button" class="btn btn-default dropdown-toggle" data-toggle= "dropdown">
+ 							Exercises<span class="caret"></span></button>
+ 							<ul class="dropdown-menu" role="menu">
+    							<li><a href="#">Exercise 1</a></li>
+   								<li><a href="#">Exercise 2</a></li>
+    							<li><a href="#">Exercise 3</a></li>
+    						</ul>
+ 					 </div>
+ 					<button type="button" class="btn btn-default"  onclick="window.location.href='../login.html'">Logout</button>
+				</div> 			 		
+  			</nav>	
+  		</div>
+	</div>	<!-- navbar -->
+	
+	
+		<div id="left" class="container">
+			<div id="exfld"  ng-controller="ExerciseCtrl">
+				<div id="instructiontxt">
+          				<h3>{{exercises[eIndex].name}}</h3>
+          				{{exercises[eIndex].text}}				
+				</div>
+				<div class="btn-group btn-group-xs" style="float: right;">
+					<button type="button" class="btn btn-default"ng-click="prev()">
+					<span class="glyphicon glyphicon-chevron-left"></span> 
+					 previous</button>
+					<button type="button" class="btn btn-default" ng-click="next()">next 
+					<span class="glyphicon glyphicon-chevron-right"></span></button>
+				</div>
+			</div><!-- exfld -->
+		
+		<div id="historyfld" ng-controller="HistoryCtrl">
+			
+				<h3>History</h3>
+				<div ng-repeat="history in history">{{history.text}}</div>
+			
+	
+		</div><!-- historyfld -->
+		<div id="in">
+		test<span class="glyphicon glyphicon-play"></span>
+		
+		</div><!-- in -->
+		
+			
+		</div><!-- left -->
+	
+		<div id="right" class="container" >
+			<div id="variablefld" >
+				
+					<h3>Variables</h3>
+					<p>a: Integer: 2</br>
+					b: Integer: 3</p>
+						
+			
+			</div><!-- varablefld -->
+			<div id="funcstionfld">
+				<h3>Functions</h3>
+			</div><!-- funcstionfld -->
+
+		</div><!-- right -->
+		
+		</div><!-- page -->
+	
+ 
+ 
+  
+  
+    
+   
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- AngularJs -->
+    <script src="../js/angular.min.js"></script>
+    <script src="single_app.js"></script>
+    
+    
+    
+   
+  </body>
+</html>
