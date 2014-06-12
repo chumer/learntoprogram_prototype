@@ -14,5 +14,6 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/multi', {templateUrl: 'partials/multi.html', controller: 'Multi'});
   $routeProvider.when('/teacher', {templateUrl: 'partials/teacher.html', controller: 'Teacher'});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'Login'});
+  
   $routeProvider.otherwise({redirectTo: '/login'});
 }]);

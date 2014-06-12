@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('learntoprogram.controllers', [])
+angular.module('learntoprogram.controllers', ['learntoprogram.directives'])
     .controller('Teacher', ['$scope', function($scope) {
 
     }])
