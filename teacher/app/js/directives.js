@@ -19,4 +19,77 @@ angular.module('learntoprogram.directives', [])
             },
             templateUrl : 'partials/navigation.html'
         };
-    });
+    })
+    .controller('Workspace', function ($scope, $rootScope, $location) {
+    })
+    .directive('workspace', function() {
+        return {
+            restrict: 'E',
+            scope: {
+                mode: '@mode'
+            },
+            templateUrl : 'partials/workspace.html'
+        };
+    })
+    .controller('SingleCode', function ($scope, $rootScope, $location) {
+        })
+    .directive('singleCode', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/singleCode.html'
+        };
+    })
+    .controller('MultiCode', function ($scope, $rootScope, $location) {
+    })
+    .directive('multiCode', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/multiCode.html'
+        };
+    })
+    .controller('Exercise', function ($scope, $rootScope, $location) {
+    })
+    .directive('exercise', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/exercise.html'
+        };
+    })
+    .controller('Variables', function ($scope, $rootScope, $location) {
+    })
+    .directive('variables', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/variables.html'
+        };
+    })
+    .controller('ExerciseTree', function ($scope, $rootScope, $location) {
+    })
+    .directive('exerciseTree', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/exerciseTree.html'
+        };
+    })
+    .controller('Functions', function ($scope, $rootScope, $location) {
+    })
+    .directive('functions', function() {
+        return {
+            restrict: 'E',
+            scope: {
+            },
+            templateUrl : 'partials/functions.html'
+        };
+    })
+    ;
+;
