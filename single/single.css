@@ -1,0 +1,93 @@
+#page
+{
+	background-color: white;
+	width: 80%;
+	min-width: 500px;
+	max-width: 1200px;
+}
+
+#left
+{
+	background-color: white; 
+	float:left; 
+	width: 50%;
+	margin: 0%;
+	padding: 0%;
+	height: 800px;
+	
+}
+
+#right
+{	
+	background-color: gray; 
+	float:right;  
+	width: 50%;
+	margin: 0%;
+	padding: 0%;
+	height: 800px;
+	
+}
+
+#exfld
+{	
+	background-color: white;
+	height: 250px;
+	margin: 0px;	
+	padding: 1px;
+	border: solid;
+	border-width: 1px;
+}
+#instructiontxt
+{
+	background-color: white;
+	height: 220px;
+	margin: 0px;	
+	padding: 1px;
+	overflow-y: auto;
+}
+
+#historyfld {
+	background-color: white;
+	height: 450px;
+	margin: 0px;	
+	padding: 1px;
+	border: solid;
+	border-width: 1px;
+	overflow-y: auto;
+	
+	
+	
+}
+#variablefld
+{
+	background-color: white;
+	height: 350px;
+	margin: 0px;	
+	padding: 1px;
+	border: solid;
+	border-width: 1px;
+	overflow-y: auto;
+	
+	
+}
+
+#funcstionfld
+{
+	background-color: white;
+	height: 450px;
+	margin: 1px;
+	padding: 1px;
+	border: solid;
+	border-width: 1px;
+	overflow-y: auto;
+	
+}
+#in
+{
+	background-color: white;
+	height: 100px;
+	margin: 1px;
+	padding: 1px;
+	border: solid;
+	border-width: 1px;
+}
