@@ -157,6 +157,10 @@ function sendCommand(editor) {
         addLog("Error: ",  err);
     }
 
+    if (window.calculateNewVariables != undefined) {
+        window.calculateNewVariables();
+    }
+
     // scroll to bottom
     var outputDiv = document.getElementById("outputArea");
     outputDiv.scrollTop = outputDiv.scrollHeight;
