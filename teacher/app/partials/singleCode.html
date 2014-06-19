@@ -6,11 +6,12 @@
         overflow-y: auto;
         overflow-x: hidden;
         width:100%;
-        margin: 5px;
+        border-bottom: solid lightgray 1px;
     }
+
     #inputArea {
-        border-top: solid gray 2px;
-        margin: 5px;
+        background-color: #f8f8f8;
+
     }
     #inputEditor {
         position: relative;
@@ -21,11 +22,11 @@
         width: 100%;
         height: 17pt;
         font-size: 14pt;
+        background-color: #f8f8f8;
     }
     #singleCodeEditor {
         width:100%;
         text-align: left;
-        border: solid black 1px;
     }
     .outputEditor {
         position: relative;
@@ -45,6 +46,7 @@
         text-align: left;
         font-weight: bold;
         width: 60px;
+        padding-left: 10px;
     }
     .editorCell {
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
@@ -56,10 +58,10 @@
     .ace_hidden-cursors {opacity:0}
 </style>
 <div id="singleCodeEditor">
-    <div id="outputArea">
+    <div id="outputArea" >
         <table  id="outputTable" />
     </div>
-    <div id="inputArea">
+    <div id="inputArea" style="padding: 7px; padding-left:0px">
         <table>
             <tr>
                 <td class="labelCell">Input:</td>
