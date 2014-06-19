@@ -9,6 +9,17 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         $scope.logout = function () {
             $rootScope.loggedUser = '';
             $location.path( "/login");
+
+
+            $http.get('json/lectures.json').then(function(lectureResponse) {
+                $scope.lectures = lectureResponse.data;
+
+                $scope.eIndex = 0;
+                $rootScope.eIndex = 1;
+
+
+            });
+
         }})
     .directive('navigationBar', function() {
         return {
