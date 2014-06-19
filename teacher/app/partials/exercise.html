@@ -11,7 +11,7 @@
         <textarea style="width: 100%;height: 200px">{{exercises[eIndex].text}}</textarea>
     </div>
 
-    <div class="btn-group btn-group-xs" style="float: right;position: absolute;bottom:0;" ng-if="isStudent()">
+    <div class="btn-group btn-group-xs" style="float: right;bottom:0;" ng-if="isStudent()">
         <button type="button" class="btn btn-default"ng-click="prev()">
             <span class="glyphicon glyphicon-chevron-left"></span>
             previous</button>
@@ -19,7 +19,7 @@
             <span class="glyphicon glyphicon-chevron-right"></span></button>
     </div>
 
-    <div class="btn-group btn-group-xs" style="float: right;position: absolute;bottom:0;" ng-if="isTeacher()">
+    <div class="btn-group btn-group-xs" style="float: right;bottom:0;" ng-if="isTeacher()">
         <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-save"></span>
             save</button>
