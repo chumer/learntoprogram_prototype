@@ -1,14 +1,12 @@
 angular.module('learntoprogram.directivesCode', [])
     .controller('SingleCode', function ($scope, $rootScope, $location) {
         $scope.send = function() {
-
+            sendWithButton($scope);
         };
     })
     .directive('singleCode', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
             templateUrl : 'partials/singleCode.html',
             link: initEditor
         };
@@ -18,8 +16,6 @@ angular.module('learntoprogram.directivesCode', [])
     .directive('multiCode', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
             templateUrl : 'partials/multiCode.html'
         };
     })
@@ -28,20 +24,21 @@ var editorIndex = 0;
 var inputEditor;
 var history = Array();
 var historyIndex = 0;
+var currentScope;
 
-function sendWithButton() {
-    sendCommand(inputEditor);
+function sendWithButton($scope) {
+    sendCommand($scope, inputEditor);
     inputEditor.focus();
 }
 
-function initEditor() {
+function initEditor($scope) {
+    currentScope = $scope;
     inputEditor = ace.edit("inputEditor")
     inputEditor.setHighlightActiveLine(false);
     inputEditor.renderer.setShowGutter(false);
     //editor.setTheme("ace/theme/monokai");
     inputEditor.getSession().setMode("ace/mode/javascript");
     inputEditor.focus();
-
 
     function scrollHistoryUp(editor) {
         if (historyIndex <= 0) {
@@ -114,8 +111,6 @@ function addLog(kind, text) {
     editorIndex++;
 }
 
-
-
 function sendCommand(editor) {
     var text = editor.getValue();
     if (text == '') {
@@ -131,6 +126,11 @@ function sendCommand(editor) {
 
     try {
         var output = window.eval(text);
+
+        if (currentScope.notifyVariables != undefined) {
+            currentScope.notifyVariables();
+        }
+
         if (output != undefined) {
             addLog("Out: ", output + "");
         }

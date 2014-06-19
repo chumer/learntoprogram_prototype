@@ -72,12 +72,14 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         };
     })
     .controller('Variables', function ($scope, $rootScope, $location) {
+        $scope.notifyVariables = function() {
+            console.log($scope.isTeacher());
+        }
     })
     .directive('variables', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
+
             templateUrl : 'partials/variables.html'
         };
     })
