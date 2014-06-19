@@ -2,7 +2,7 @@
         { "id":"Lecture 1",
             "exercises":
                 [
-                    {"name": "Exercise 1", "text": "Some super difficult instructions 1..  More super difficult instructions..." },
+                    {"name": "Exercise 1", "text": "Create two local variables with the   More super difficult instructions..." },
                     {"name": "Exercise 2", "text": "Some super difficult instructions 2..  More super difficult instructions..." },
                     {"name": "Exercise 3", "text": "Some super difficult instructions 3..  More super difficult instructions..." }
 
