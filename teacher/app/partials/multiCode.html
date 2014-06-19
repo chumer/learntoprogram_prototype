@@ -1,4 +1,29 @@
 <div ng-controller="MultiCode">
 
-  Multicode
+
+    <div id="singleCodeEditor">
+        <div id="outputArea">
+            <table  id="outputTable" />
+        </div>
+        <div id="inputArea">
+            <table>
+                <tr>
+                    <td class="labelCell">Input:</td>
+                    <td class="editorCell">
+                        <table>
+                            <tr>
+                                <td>
+                                    <div id="inputEditor"></div>
+                                </td>
+                                <td>
+                                    <button type="button" onClick="sendWithButton()" class="btn btn-default" style="width:10px">&gt;</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
 </div>
