@@ -21,6 +21,10 @@ angular.module('learntoprogram.directives', [])
         };
     })
     .controller('Workspace', function ($scope, $rootScope, $location) {
+        $scope.isSingle = function() {return $scope.mode == 'Single';};
+        $scope.isMulti = function() {return $scope.mode == 'Multi';};
+        $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
+
     })
     .directive('workspace', function() {
         return {
@@ -29,26 +33,6 @@ angular.module('learntoprogram.directives', [])
                 mode: '@mode'
             },
             templateUrl : 'partials/workspace.html'
-        };
-    })
-    .controller('SingleCode', function ($scope, $rootScope, $location) {
-        })
-    .directive('singleCode', function() {
-        return {
-            restrict: 'E',
-            scope: {
-            },
-            templateUrl : 'partials/singleCode.html'
-        };
-    })
-    .controller('MultiCode', function ($scope, $rootScope, $location) {
-    })
-    .directive('multiCode', function() {
-        return {
-            restrict: 'E',
-            scope: {
-            },
-            templateUrl : 'partials/multiCode.html'
         };
     })
     .controller('Exercise',  function($scope,$http,$rootScope){
@@ -121,3 +105,5 @@ angular.module('learntoprogram.directives', [])
     })
     ;
 ;
+
+

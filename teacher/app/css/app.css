@@ -55,3 +55,18 @@ body {
     opacity: 0.5;
 }
 
+
+.workspace-item{
+
+
+    background: #008000;
+    display: inline-block;
+
+}
+
+#workspace{
+    text-align: center;
+    width:800px; margin:0 auto;
+    height: 500px; margin:0 auto;
+
+}

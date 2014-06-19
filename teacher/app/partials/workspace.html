@@ -1,19 +1,55 @@
 
-<div ng-controller="Workspace">
-    <div>
+
+
+
+
+
+<div class="splitterVertical" id="workspace" ng-controller="Workspace">
+
+    <div class="splitterHorizontalTop" >
+    <div class="workspace-item">
         <exercise></exercise>
     </div>
-    <div>
-        <variables></variables>
-        <exercise-tree></exercise-tree>
+
+
+    <div class="workspace-item">
+        <variables ng-if="!isTeacher()"></variables>
+        <exercise-tree ng-if="isTeacher()"></exercise-tree>
+    </div>
 
     </div>
-    <div>
-        <single-code></single-code>
-        <multi-code></multi-code>
+
+
+    <div class="splitterHorizontalBottom">
+    <div class="workspace-item">
+        <single-code ng-if="isSingle()" ></single-code>
+        <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
     </div>
-    <div>
+
+    <div class="workspace-item">
         <functions></functions>
 
     </div>
+    </div>
 </div>
+
+
+<script>
+
+    $(".splitterHorizontalTop").kendoSplitter({
+        orientation: "horizontal",
+        panes: [ { collapsible: false, size: "70%" }, { scrollable: false }, {} ]
+
+    });
+
+    $(".splitterHorizontalBottom").kendoSplitter({
+        orientation: "horizontal",
+        panes: [ { collapsible: false, size: "70%" }, {collapsible: true} , {} ]
+
+    });
+
+    $(".splitterVertical").kendoSplitter({
+        orientation: "vertical",
+        panes: [ { scrollable: false }, {} ]
+    });
+</script>

@@ -1,4 +1,78 @@
 <div ng-controller="SingleCode">
 
-Single Code
+<style type="text/css" media="screen">
+    #outputArea {
+        height: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    #inputArea {
+        border-top: solid gray 2px;
+    }
+    #inputEditor {
+        position: relative;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 500px;
+        height: 17pt;
+        font-size: 14pt;
+    }
+    #singleCodeEditor {
+        border: solid gray 2px;
+        width: 592px;
+        text-align: left;
+    }
+    .editor {
+        position: relative;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 500px;
+        height: 18pt;
+        font-size: 14pt;
+    }
+    .labelCell {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+        font-size: 14pt;
+        height: 20pt;
+        width: 60px;
+
+        text-align: left;
+        font-weight: bold;
+    }
+    .editorCell {
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+        font-size: 14pt;
+        height: 20pt;
+    }
+    .ace_hidden-cursors {opacity:0}
+</style>
+<div id="singleCodeEditor">
+    <div id="outputArea">
+        <table  id="outputTable" />
+    </div>
+    <div id="inputArea">
+        <table>
+            <tr>
+                <td class="labelCell">Input:</td>
+                <td class="editorCell">
+                    <table>
+                        <tr>
+                            <td>
+                                <div id="inputEditor"></div>
+                            </td>
+                            <td>
+                                <button type="button" onClick="sendWithButton()" class="btn btn-default" style="width:10px">&gt;</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
 </div>
