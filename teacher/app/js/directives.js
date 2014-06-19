@@ -94,10 +94,12 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             }
             }
         };
+
     })
     .directive('variables', function() {
         return {
             restrict: 'E',
+
             templateUrl : 'partials/variables.html'
         };
     })
