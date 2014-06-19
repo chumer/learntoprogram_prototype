@@ -112,6 +112,8 @@ function addLog(kind, text) {
         editor.renderer.hideCursor();
     }
     editorIndex++;
+
+
 }
 
 
