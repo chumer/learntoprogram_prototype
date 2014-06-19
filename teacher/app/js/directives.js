@@ -51,7 +51,26 @@ angular.module('learntoprogram.directives', [])
             templateUrl : 'partials/multiCode.html'
         };
     })
-    .controller('Exercise', function ($scope, $rootScope, $location) {
+    .controller('Exercise',  function($scope,$http,$rootScope){
+        $http.get('json/exercises.json').then(function(exerciseResponse) {
+            $scope.exercises = exerciseResponse.data;
+            $scope.eIndex = 0;
+
+            $scope.next = function(){
+                if($scope.eIndex <$scope.exercises.length-1)
+                    $scope.eIndex++;
+            };
+
+
+            $scope.prev = function(){
+                if($scope.eIndex >0)
+                    $scope.eIndex--;
+            };
+        });
+
+        $scope.isTeacher = function() {return "true";};
+        $scope.isStudent = function() {return "false";};
+
     })
     .directive('exercise', function() {
         return {
@@ -71,7 +90,16 @@ angular.module('learntoprogram.directives', [])
             templateUrl : 'partials/variables.html'
         };
     })
-    .controller('ExerciseTree', function ($scope, $rootScope, $location) {
+    .controller('ExerciseTree', function ($scope, $http,$rootScope, $location) {
+        $http.get('json/lectures.json').then(function(lectureResponse) {
+            $scope.lectures = lectureResponse.data;
+
+            $scope.eIndex = 0;
+            $rootScope.eIndex = 1;
+
+
+        });
+
     })
     .directive('exerciseTree', function() {
         return {

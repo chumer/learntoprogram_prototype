@@ -1,11 +1,13 @@
-<form name="loginForm" ng-submit="login(credentials)"
-      novalidate>
-    <label for="username">Username:</label>
-    <input type="text" id="username"
-           ng-model="credentials.username">
-    <label for="password">Password:</label>
-    <input type="password" id="password"
-           ng-model="credentials.password">
-    <button type="submit">Login</button>
-    <span>{{loginError}}</span>
-</form>
+<div class="container">
+    <form name="loginForm" ng-submit="login(credentials)" class="form-signin" style="width: 50%;">
+
+
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input name="user" width="100" type="text" class="form-control" placeholder="user" required autofocus ng-model="credentials.username">
+    <input type="password" class="form-control" placeholder="Password" required ng-model="credentials.password">
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+    </label>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+</div>

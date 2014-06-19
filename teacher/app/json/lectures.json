@@ -1,0 +1,25 @@
+[
+        { "id":"Lecture 1",
+            "exercises":
+                [
+                    {"name": "Exercise 1", "text": "Some super difficult instructions 1..  More super difficult instructions..." },
+                    {"name": "Exercise 2", "text": "Some super difficult instructions 2..  More super difficult instructions..." },
+                    {"name": "Exercise 3", "text": "Some super difficult instructions 3..  More super difficult instructions..." }
+
+                ]},
+        {"id":"Lecture 2",
+            "exercises":
+                [
+                    {"name": "Exercise 3", "text": "Some super difficult instructions 1..  More super difficult instructions..." },
+                    {"name": "Exercise 4", "text": "Some super difficult instructions 2..  More super difficult instructions..." },
+                    {"name": "Exercise 5", "text": "Some super difficult instructions 3..  More super difficult instructions..." }
+
+                ]},
+        {"id":"Lecture 3",
+            "exercises":
+                [
+                    {"name": "Exercise 6", "text": "Some super difficult instructions 1..  More super difficult instructions..." },
+                    {"name": "Exercise 7", "text": "Some super difficult instructions 2..  More super difficult instructions..." }
+
+                ]}
+ ]
