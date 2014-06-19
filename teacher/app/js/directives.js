@@ -2,8 +2,7 @@
 
 /* Directives */
 
-
-angular.module('learntoprogram.directives', [])
+angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     .controller('Navigation', function ($scope, $rootScope, $location) {
         $scope.isTeacher = function() {return $rootScope.loggedUser == 'teacher';};
         $scope.logout = function () {
@@ -33,26 +32,6 @@ angular.module('learntoprogram.directives', [])
                 mode: '@mode'
             },
             templateUrl : 'partials/workspace.html'
-        };
-    })
-    .controller('SingleCode', function ($scope, $rootScope, $location) {
-        })
-    .directive('singleCode', function() {
-        return {
-            restrict: 'E',
-            scope: {
-            },
-            templateUrl : 'partials/singleCode.html'
-        };
-    })
-    .controller('MultiCode', function ($scope, $rootScope, $location) {
-    })
-    .directive('multiCode', function() {
-        return {
-            restrict: 'E',
-            scope: {
-            },
-            templateUrl : 'partials/multiCode.html'
         };
     })
     .controller('Exercise', function ($scope, $rootScope, $location) {
@@ -97,3 +76,5 @@ angular.module('learntoprogram.directives', [])
     })
     ;
 ;
+
+
