@@ -24,6 +24,7 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         $scope.isSingle = function() {return $scope.mode == 'Single';};
         $scope.isMulti = function() {return $scope.mode == 'Multi';};
         $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
+        $scope.isStudent = function() {return $scope.mode != 'Teacher';};
 
     })
     .directive('workspace', function() {
@@ -50,17 +51,12 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
                 if($scope.eIndex >0)
                     $scope.eIndex--;
             };
-        });
-
-        $scope.isTeacher = function() {return $scope.$parent.mode == 'Teacher';};
-        $scope.isStudent = function() {return $scope.$parent.mode != 'Teacher';};
+        });;
 
     })
     .directive('exercise', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
             templateUrl : 'partials/exercise.html'
         };
     })
