@@ -7,7 +7,7 @@
 
 
 <div ng-controller="Functions" style="width: 230px; margin-left: 4px; margin-top: 25px;">
-
+    <div id="top" style="height: 290px">
     <h4 style="margin-left: 10px;"><span class="glyphicon glyphicon-folder-open" style="margin-right: 10px;"></span>Functions</h4>
 
     <div style="margin-left: 30px;">
@@ -34,7 +34,12 @@
         <span class="glyphicon glyphicon-paperclip"> </span>
         function4()
     </div>
+    </div>
+    <div class="btn-group btn-group-xs"  ng-if="isTeacher()" style=" bottom: 0;float: right">
+        <button type="button" class="btn btn-default">add
+            <span class="glyphicon glyphicon-plus"></span></button>
 
+    </div>
 
 
 

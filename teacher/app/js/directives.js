@@ -135,8 +135,6 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     .directive('functions', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
             templateUrl : 'partials/functions.html'
         };
     })
