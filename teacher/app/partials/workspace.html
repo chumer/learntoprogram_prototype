@@ -31,11 +31,11 @@
     <div  class="splitterVertical" style="height: 100%">
 
         <div id="column1">
-            <div class="workspace-item" style="height: 100px">
+            <div class="workspace-item" style="height: 150px">
                 <exercise></exercise>
             </div>
 
-            <div class="workspace-item" style="height: 580px" >
+            <div class="workspace-item" style="height: 530px" >
                 <single-code ng-if="isSingle()" ></single-code>
                 <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
             </div>
@@ -60,18 +60,6 @@
 
 
 <script>
-
-    $(".splitterHorizontalTop").kendoSplitter({
-        orientation: "horizontal",
-        panes: [ { collapsible: false, size: "70%" }, { scrollable: false }, {} ]
-
-    });
-
-    $(".splitterHorizontalBottom").kendoSplitter({
-        orientation: "horizontal",
-        panes: [ { collapsible: false, size: "70%" }, {collapsible: true} , {} ]
-
-    });
 
     $(".splitterVertical").kendoSplitter({
         orientation: "horizontal",
