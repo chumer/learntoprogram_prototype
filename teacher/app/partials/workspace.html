@@ -6,7 +6,7 @@
 
 <div class="splitterVertical" id="workspace" ng-controller="Workspace">
 
-    <div class="splitter" >
+    <div class="splitterHorizontalTop" >
     <div class="workspace-item">
         <exercise></exercise>
     </div>
@@ -20,7 +20,7 @@
     </div>
 
 
-    <div class="splitter">
+    <div class="splitterHorizontalBottom">
     <div class="workspace-item">
         <single-code ng-if="isSingle()" ></single-code>
         <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
@@ -35,9 +35,17 @@
 
 
 <script>
-    $(".splitter").kendoSplitter({
+
+    $(".splitterHorizontalTop").kendoSplitter({
         orientation: "horizontal",
-        panes: [ { scrollable: false }, {} ]
+        panes: [ { collapsible: false, size: "70%" }, { scrollable: false }, {} ]
+
+    });
+
+    $(".splitterHorizontalBottom").kendoSplitter({
+        orientation: "horizontal",
+        panes: [ { collapsible: false, size: "70%" }, {collapsible: true} , {} ]
+
     });
 
     $(".splitterVertical").kendoSplitter({
