@@ -118,7 +118,7 @@ function addLog(kind, text) {
 
 
 
-function addLog(editor) {
+function sendCommand(editor) {
     var text = editor.getValue();
     if (text == '') {
         return;
