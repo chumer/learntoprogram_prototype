@@ -21,7 +21,7 @@ angular.module('learntoprogram.controllers', ['learntoprogram.directives'])
         $scope.login = function (credentials) {
             if (credentials.username == 'single' || credentials.username == 'multi' || credentials.username == 'teacher') { // test
                 $rootScope.loggedUser = credentials.username;
-                $location.path( "/" + credentials.username );
+                $location.path( "/" + credentials.username +"/0");
             } else {
                 $scope.loginError = "Invalid user/pass.";
             }

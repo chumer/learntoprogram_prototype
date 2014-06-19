@@ -51,14 +51,14 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             templateUrl : 'partials/workspace.html'
         };
     })
-    .controller('Exercise',  function($scope,$http,$location,$rootScope){
+    .controller('Exercise',  function($scope,$http,$location,$rootScope,$route, $routeParams){
         $http.get('json/exercises.json').then(function(exerciseResponse) {
             $scope.exercises = exerciseResponse.data;
 
-            if ($scope.isMulti()) {
-                $scope.eIndex = 2;
-            } else {
+            if ($routeParams.eIndex == undefined) {
                 $scope.eIndex = 0;
+            } else {
+                $scope.eIndex = $routeParams.eIndex;
             }
 
             $scope.next = function(){
@@ -67,6 +67,7 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
                 }
                 $scope.updateMode();
             };
+
             $scope.prev = function(){
                 if($scope.eIndex >0)
                     $scope.eIndex--;
@@ -74,13 +75,15 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             };
 
             $scope.updateMode = function() {
-                if ($scope.eIndex > 1 && $scope.mode == "Single") {
+                $routeParams.eIndex = $scope.eIndex;
+                if ($scope.eIndex > 1 ) {
                     $rootScope.loggedUser = "multi";
-                    $location.path( "/multi");
-                } else  if ($scope.eIndex <= 1 &&  $scope.mode == "Multi") {
+                    $location.path( "/multi/" + $scope.eIndex);
+                } else  if ($scope.eIndex <= 1) {
                     $rootScope.loggedUser = "single";
-                    $location.path( "/single");
+                    $location.path( "/single/"+ $scope.eIndex);
                 }
+
             }
         });
 
@@ -93,35 +96,42 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     })
     .controller('Variables', function ($scope, $rootScope, $location) {
 
+        window.blackList = undefined;
+        if (window.varsToShow != undefined) {
+            for(var key in window.varsToShow) {
+                if (window.hasOwnProperty(key)) {
+                    delete window[key];
+                }
+            }
+        }
         $scope.varsToShow = [];
 
-
         window.calculateNewVariables = function(){
-            var oldVarsToShow = $scope.varsToShow;
-            $scope.varsToShow = [];
+            var oldVarsToShow = window.varsToShow;
+            var blacklist = window.blacklist;
+            window.varsToShow = [];
 
-            if ($scope.blackList == undefined) {
-                $scope.blackList = [];
+            if (blacklist == undefined) {
+                blacklist = [];
+                window.blacklist = blacklist;
                 for(var key in window) {
                     if (window.hasOwnProperty(key)) {
-                        $scope.blackList.push(key);
+                        blacklist.push(key);
                     }
                 }
             }
-
             for(var key in window) {
                 if (window.hasOwnProperty(key)) {
                     var found = false;
 
-                    for (var i = 0; i < $scope.blackList.length; i++) {
-                        if ($scope.blackList[i] == key) {
+                    for (var i = 0; i < blacklist.length; i++) {
+                        if (blacklist[i] == key) {
                             found = true;
                             break;
                         }
                     }
                     if (!found) {
-                        console.log(key);
-                        $scope.varsToShow[key] = window[key];
+                        window.varsToShow[key] = window[key];
                     }
                 }
             }
@@ -134,16 +144,16 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             }
 
             var i = 0;
-            for (var key in $scope.varsToShow) {
-                if ($scope.varsToShow.hasOwnProperty(key)) {
+            for (var key in window.varsToShow) {
+                if (window.varsToShow.hasOwnProperty(key)) {
                     var row = variablesTable.insertRow(i);
                     var keyCell = row.insertCell(0);
                     var clazz = "varDefault";
-                    if (oldVarsToShow != undefined &&  (!oldVarsToShow.hasOwnProperty(key) || oldVarsToShow[key] != $scope.varsToShow[key])) {
+                    if (oldVarsToShow != undefined &&  (!oldVarsToShow.hasOwnProperty(key) || oldVarsToShow[key] != window.varsToShow[key])) {
                         clazz = "varHighlight";
                     }
 
-                    keyCell.innerHTML = "<div style='margin-left: 30px;'><span class='glyphicon glyphicon-tag'> </span>&nbsp;&nbsp;&nbsp;"+ key + " = " + $scope.varsToShow[key] + "</div>";
+                    keyCell.innerHTML = "<div style='margin-left: 30px;'><span class='glyphicon glyphicon-tag'> </span>&nbsp;"+ key + " = " + window.varsToShow[key] + "</div>";
                     keyCell.className = clazz;
 
                     i++;
@@ -156,7 +166,7 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     .directive('variables', function() {
         return {
             restrict: 'E',
-
+            link: initVariables,
             templateUrl : 'partials/variables.html'
         };
     })
@@ -182,4 +192,6 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     ;
 ;
 
-
+function initVariables() {
+    window
+}

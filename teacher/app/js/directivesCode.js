@@ -31,6 +31,9 @@ function sendWithButton($scope) {
 }
 
 function initEditor($scope) {
+    editorIndex = 0;
+    history = Array();
+    historyIndex = 0;
     inputEditor = ace.edit("inputEditor")
     inputEditor.setHighlightActiveLine(false);
     inputEditor.renderer.setShowGutter(false);

@@ -10,9 +10,9 @@ angular.module('learntoprogram', [
   'learntoprogram.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/single', {templateUrl: 'partials/single.html', controller: 'Single'});
-  $routeProvider.when('/multi', {templateUrl: 'partials/multi.html', controller: 'Multi'});
-  $routeProvider.when('/teacher', {templateUrl: 'partials/teacher.html', controller: 'Teacher'});
+  $routeProvider.when('/single/:eIndex', {templateUrl: 'partials/single.html', controller: 'Single'});
+  $routeProvider.when('/multi/:eIndex', {templateUrl: 'partials/multi.html', controller: 'Multi'});
+  $routeProvider.when('/teacher/:eIndex', {templateUrl: 'partials/teacher.html', controller: 'Teacher'});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'Login'});
   $routeProvider.otherwise({redirectTo: '/login'});
 }]);
