@@ -1,6 +1,7 @@
 <div ng-controller="ExerciseTree">
 
-    <div id="lectureTree" ng-repeat="lecture in lectures">
+    <div id="lectureTree"  style="height: 225px;overflow-y: auto;position: relative">
+    <div id="content" ng-repeat="lecture in lectures">
 
     <h4> <span class="glyphicon glyphicon-folder-open"></span>   {{lecture.id}}</h4>
 
@@ -10,7 +11,8 @@
        </div>
 
     </div>
-
+    </div>
+    <div style="position: absolute;bottom:0; width: 100%">
     <div class="btn-group btn-group-xs" style="float: right;">
         <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-minus"></span>
@@ -25,5 +27,5 @@
             share</button>
 
     </div>
-
+    </div>
 </div>
