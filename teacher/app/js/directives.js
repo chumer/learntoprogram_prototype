@@ -51,22 +51,38 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             templateUrl : 'partials/workspace.html'
         };
     })
-    .controller('Exercise',  function($scope,$http,$rootScope){
+    .controller('Exercise',  function($scope,$http,$location,$rootScope){
         $http.get('json/exercises.json').then(function(exerciseResponse) {
             $scope.exercises = exerciseResponse.data;
-            $scope.eIndex = 0;
+
+            if ($scope.isMulti()) {
+                $scope.eIndex = 2;
+            } else {
+                $scope.eIndex = 0;
+            }
 
             $scope.next = function(){
-                if($scope.eIndex <$scope.exercises.length-1)
+                if($scope.eIndex <$scope.exercises.length-1) {
                     $scope.eIndex++;
+                }
+                $scope.updateMode();
             };
-
-
             $scope.prev = function(){
                 if($scope.eIndex >0)
                     $scope.eIndex--;
+                $scope.updateMode();
             };
-        });;
+
+            $scope.updateMode = function() {
+                if ($scope.eIndex > 1 && $scope.mode == "Single") {
+                    $rootScope.loggedUser = "multi";
+                    $location.path( "/multi");
+                } else  if ($scope.eIndex <= 1 &&  $scope.mode == "Multi") {
+                    $rootScope.loggedUser = "single";
+                    $location.path( "/single");
+                }
+            }
+        });
 
     })
     .directive('exercise', function() {
