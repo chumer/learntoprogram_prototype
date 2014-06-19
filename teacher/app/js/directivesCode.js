@@ -98,7 +98,7 @@ function addLog(kind, text) {
         textCell.innerHTML = "<span style='color:red'>" + text + "</span>"
     } else {
         var editorDiv = document.createElement('div');
-        editorDiv.className = 'editor';
+        editorDiv.className = 'outputEditor';
         textCell.appendChild(editorDiv);
         var editor = ace.edit(editorDiv);
         editor.getSession().setMode("ace/mode/javascript");
