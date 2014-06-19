@@ -102,7 +102,7 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             $scope.originalVars.push(window[key]);
         }
 
-        $rootScope.calculateNewVariables = function(){
+        window.calculateNewVariables = function(){
 
             for(var key in window) {
             if ( $scope.originalVars.indexOf('Sam') == -1) {
