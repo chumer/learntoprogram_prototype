@@ -76,9 +76,25 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         };
     })
     .controller('Variables', function ($scope, $rootScope, $location) {
-        $scope.notifyVariables = function() {
-            console.log($scope.isTeacher());
+
+        $scope.varsToShow = [];
+
+        $scope.originalVars = [];
+
+        for(var key in window) {
+            //here we read all the values from the window obj.
+            $scope.originalVars.push(window[key]);
         }
+
+        $rootScope.calculateNewVariables = function(){
+
+            for(var key in window) {
+            if ( $scope.originalVars.indexOf('Sam') == -1) {
+                $scope.varsToShow.push(window[key]);
+            }
+            }
+        };
+
     })
     .directive('variables', function() {
         return {

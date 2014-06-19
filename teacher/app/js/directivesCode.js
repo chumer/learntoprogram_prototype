@@ -24,10 +24,9 @@ var editorIndex = 0;
 var inputEditor;
 var history = Array();
 var historyIndex = 0;
-var currentScope;
 
 function sendWithButton($scope) {
-    sendCommand($scope, inputEditor);
+    sendCommand(inputEditor);
     inputEditor.focus();
 }
 
