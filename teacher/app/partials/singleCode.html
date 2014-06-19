@@ -2,13 +2,15 @@
 
 <style type="text/css" media="screen">
     #outputArea {
-        height: 530px;
+        height: 500px;
         overflow-y: auto;
         overflow-x: hidden;
-        width:670px;
+        width:100%;
+        margin: 5px;
     }
     #inputArea {
         border-top: solid gray 2px;
+        margin: 5px;
     }
     #inputEditor {
         position: relative;
@@ -16,15 +18,13 @@
         right: 0;
         bottom: 0;
         left: 0;
-        width: 588px;
+        width: 100%;
         height: 17pt;
         font-size: 14pt;
     }
     #singleCodeEditor {
-        border: solid gray 2px;
-        width: 693px;
+        width:100%;
         text-align: left;
-        padding: 5px;
     }
     .outputEditor {
         position: relative;
@@ -40,16 +40,16 @@
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
         font-size: 14pt;
         height: 20pt;
-        width: 60px;
 
         text-align: left;
         font-weight: bold;
+        width: 60px;
     }
     .editorCell {
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
         font-size: 14pt;
         height: 20pt;
-        width: 640px;
+        width: 100%;
 
     }
     .ace_hidden-cursors {opacity:0}
@@ -63,12 +63,12 @@
             <tr>
                 <td class="labelCell">Input:</td>
                 <td class="editorCell">
-                    <table>
+                    <table style="width:100%">
                         <tr>
-                            <td>
+                            <td style="width:100%">
                                 <div id="inputEditor"></div>
                             </td>
-                            <td>
+                            <td >
                                 <button type="button" onClick="sendWithButton()" class="btn btn-default" style="width:10px">&gt;</button>
                             </td>
                         </tr>
