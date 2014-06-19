@@ -21,9 +21,9 @@ angular.module('learntoprogram.directives', [])
         };
     })
     .controller('Workspace', function ($scope, $rootScope, $location) {
-        $scope.isSingle = function() {return $rootScope.loggedUser == 'single';};
-        $scope.isMulti = function() {return $rootScope.loggedUser == 'multi';};
-        $scope.isTeacher = function() {return $rootScope.loggedUser == 'teacher';};
+        $scope.isSingle = function() {return $scope.mode == 'Single';};
+        $scope.isMulti = function() {return $scope.mode == 'Multi';};
+        $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
 
     })
     .directive('workspace', function() {

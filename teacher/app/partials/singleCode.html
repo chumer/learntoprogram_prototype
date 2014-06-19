@@ -2,7 +2,7 @@
 
 <style type="text/css" media="screen">
     #outputArea {
-        height: 500px;
+        height: 300px;
         overflow-y: auto;
         overflow-x: hidden;
     }
@@ -18,11 +18,11 @@
         width: 500px;
         height: 17pt;
         font-size: 14pt;
-
     }
     #singleCodeEditor {
         border: solid gray 2px;
         width: 592px;
+        text-align: left;
     }
     .editor {
         position: relative;
@@ -75,126 +75,129 @@
     </div>
 </div>
 
-<script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script>
-
-    var editorIndex = 0;
-    var inputEditor = ace.edit("inputEditor");
-    inputEditor.setHighlightActiveLine(false);
-    inputEditor.renderer.setShowGutter(false);
-    //editor.setTheme("ace/theme/monokai");
-    inputEditor.getSession().setMode("ace/mode/javascript");
-
-    inputEditor.focus();
-
-    var history = Array();
-    var historyIndex = 0;
-
-    function addLog(kind, text) {
-        var outputTable = document.getElementById("outputTable");
-        var row = outputTable.insertRow(editorIndex);
-        var kindCell = row.insertCell(0);
-        var textCell = row.insertCell(1);
-
-        kindCell.innerHTML = kind;
-        kindCell.className = 'labelCell';
-        textCell.className = 'editorCell';
-
-        if (kind == 'Error: ') {
-            kindCell.innerHTML = 'Out:';
-            textCell.innerHTML = "<span style='color:red'>" + text + "</span>"
-        } else {
-            var editorDiv = document.createElement('div');
-            editorDiv.className = 'editor';
-            textCell.appendChild(editorDiv);
-            var editor = ace.edit(editorDiv);
-            editor.getSession().setMode("ace/mode/javascript");
-            editor.setValue(text);
-            editor.renderer.setShowGutter(false);
-
-            editor.setReadOnly(true);
-            editor.setHighlightActiveLine(false);
-            editor.setShowPrintMargin(false);
-            editor.selection.clearSelection();
-            editor.renderer.hideCursor();
-        }
+<script lang="javascript">
+    $("singleCodeEditor" ).ready(function() {
+        initEditor();
+    });
 
 
-        editorIndex++;
-    }
+    function initEditor() {
+        var editorIndex = 0;
+        var inputEditor = ace.edit("inputEditor");
+        inputEditor.setHighlightActiveLine(false);
+        inputEditor.renderer.setShowGutter(false);
+        //editor.setTheme("ace/theme/monokai");
+        inputEditor.getSession().setMode("ace/mode/javascript");
 
-    function send() {
-        sendCommand(inputEditor);
         inputEditor.focus();
-    }
 
-    function sendCommand(editor) {
-        var text = editor.getValue();
-        if (text == '') {
-            return;
-        }
-        if (history.length == 0 || history[history.length - 1] != text) {
-            history.push(text);
-        }
-        historyIndex = history.length;
+        var history = Array();
+        var historyIndex = 0;
 
-        editor.setValue("");
-        addLog("In: ", text);
+        function addLog(kind, text) {
+            var outputTable = document.getElementById("outputTable");
+            var row = outputTable.insertRow(editorIndex);
+            var kindCell = row.insertCell(0);
+            var textCell = row.insertCell(1);
 
-        try {
-            var output = window.eval(text);
-            if (output != undefined) {
-                addLog("Out: ", output + "");
+            kindCell.innerHTML = kind;
+            kindCell.className = 'labelCell';
+            textCell.className = 'editorCell';
+
+            if (kind == 'Error: ') {
+                kindCell.innerHTML = 'Out:';
+                textCell.innerHTML = "<span style='color:red'>" + text + "</span>"
+            } else {
+                var editorDiv = document.createElement('div');
+                editorDiv.className = 'editor';
+                textCell.appendChild(editorDiv);
+                var editor = ace.edit(editorDiv);
+                editor.getSession().setMode("ace/mode/javascript");
+                editor.setValue(text);
+                editor.renderer.setShowGutter(false);
+
+                editor.setReadOnly(true);
+                editor.setHighlightActiveLine(false);
+                editor.setShowPrintMargin(false);
+                editor.selection.clearSelection();
+                editor.renderer.hideCursor();
             }
-        } catch (err) {
-            addLog("Error: ",  err);
+
+
+            editorIndex++;
         }
 
-        // scroll to bottom
-        var outputDiv = document.getElementById("outputArea");
-        outputDiv.scrollTop = outputDiv.scrollHeight;
-    }
-
-    function scrollHistoryUp(editor) {
-        if (historyIndex <= 0) {
-            return;
+        function send() {
+            sendCommand(inputEditor);
+            inputEditor.focus();
         }
-        historyIndex--;
-        editor.setValue(history[historyIndex]);
-    }
 
-    function scrollHistoryDown(editor) {
-        if (historyIndex >= history.length) {
+        function sendCommand(editor) {
+            var text = editor.getValue();
+            if (text == '') {
+                return;
+            }
+            if (history.length == 0 || history[history.length - 1] != text) {
+                history.push(text);
+            }
+            historyIndex = history.length;
+
             editor.setValue("");
-            return;
+            addLog("In: ", text);
+
+            try {
+                var output = window.eval(text);
+                if (output != undefined) {
+                    addLog("Out: ", output + "");
+                }
+            } catch (err) {
+                addLog("Error: ",  err);
+            }
+
+            // scroll to bottom
+            var outputDiv = document.getElementById("outputArea");
+            outputDiv.scrollTop = outputDiv.scrollHeight;
         }
 
-        historyIndex++;
-        editor.setValue(history[historyIndex]);
+        function scrollHistoryUp(editor) {
+            if (historyIndex <= 0) {
+                return;
+            }
+            historyIndex--;
+            editor.setValue(history[historyIndex]);
+        }
+
+        function scrollHistoryDown(editor) {
+            if (historyIndex >= history.length) {
+                editor.setValue("");
+                return;
+            }
+
+            historyIndex++;
+            editor.setValue(history[historyIndex]);
+        }
+
+        inputEditor.commands.addCommand({
+            name: 'send',
+            bindKey: {win: 'Return',  mac: 'Return'},
+            exec: sendCommand,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
+
+        inputEditor.commands.addCommand({
+            name: 'historyUp',
+            bindKey: {win: 'up',  mac: 'up'},
+            exec: scrollHistoryUp,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
+
+        inputEditor.commands.addCommand({
+            name: 'historyDown',
+            bindKey: {win: 'down',  mac: 'down'},
+            exec: scrollHistoryDown,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
     }
-
-    inputEditor.commands.addCommand({
-        name: 'send',
-        bindKey: {win: 'Return',  mac: 'Return'},
-        exec: sendCommand,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
-
-    inputEditor.commands.addCommand({
-        name: 'historyUp',
-        bindKey: {win: 'up',  mac: 'up'},
-        exec: scrollHistoryUp,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
-
-    inputEditor.commands.addCommand({
-        name: 'historyDown',
-        bindKey: {win: 'down',  mac: 'down'},
-        exec: scrollHistoryDown,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
-
-
 </script>
 
 </div>
