@@ -1,35 +1,60 @@
+<style>
+    div#column1 {
+        width: 600px;
+        height: 860;
+
+        float: left;
+    }
+    div#column2 {
+        margin-left: 0%;
+     
+        float: right;
+        width: 343px;
+        height: 860;
+    }
+
+
+    #workspace{
+        text-align: center;
+        width:943px; margin:0 auto;
+        height: 680px; margin:0 auto;
+        background: darkgray;
+    }
+
+
+</style>
 
 
 
+<div  id="workspace" ng-controller="Workspace" >
+
+    <div>
+
+        <div id="column1">
+            <div class="workspace-item" style="width: 600px; height: 240px">
+                <exercise></exercise>
+            </div>
+
+            <div class="workspace-item" style="width: 600px; height: 440px" >
+                <single-code ng-if="isSingle()" ></single-code>
+                <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
+            </div>
+        </div>
 
 
+        <div id="column2" >
+            <div class="workspace-item" style="width: 343px; height: 340px">
+                <variables ng-if="!isTeacher()"></variables>
+                <exercise-tree ng-if="isTeacher()"></exercise-tree>
+            </div>
 
-<div class="splitterVertical" id="workspace" ng-controller="Workspace">
+            <div class="workspace-item" style="width: 600px; height: 240px">
 
-    <div class="splitterHorizontalTop" >
-    <div class="workspace-item">
-        <exercise></exercise>
-    </div>
+                <functions></functions>
+            </div>
 
+        </div>
 
-    <div class="workspace-item">
-        <variables ng-if="!isTeacher()"></variables>
-        <exercise-tree ng-if="isTeacher()"></exercise-tree>
-    </div>
-
-    </div>
-
-
-    <div class="splitterHorizontalBottom">
-    <div class="workspace-item">
-        <single-code ng-if="isSingle()" ></single-code>
-        <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
-    </div>
-
-    <div class="workspace-item">
-        <functions></functions>
-
-    </div>
     </div>
 </div>
 
