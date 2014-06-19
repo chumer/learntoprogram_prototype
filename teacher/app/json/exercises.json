@@ -1,6 +1,6 @@
 [
    {"name": "Exercise 1", "text": "Create two local variables with the values 5 and 3, create a third variable and add the first two" },
-  {"name": "Exercise 2", "text": "Some super difficult instructions 2..  More super difficult instructions..." },
+  {"name": "Exercise 2", "text": "Which day of the week (as number) do we have today?" },
   { "name": "Exercise 3", "text": "Some super difficult instructions 3..  More super difficult instructions... More super difficult instructions 2... More super difficult instructions 3...More super difficult instructions 4... More super difficult instructions 5... More super difficult instructions 6...  More super difficult instructions... More super difficult instructions 2... More super difficult instructions 3...More super difficult instructions 4... More super difficult instructions 5... More super difficult instructions 6..." }
   
 ]
