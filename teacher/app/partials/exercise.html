@@ -1,12 +1,12 @@
 
 <div ng-controller="Exercise">
 
-    <div id="instructiontxtStudent" ng-if="isStudent()"style="overflow-y:auto;width:100%;height: 77px;">
+    <div id="instructiontxtStudent" ng-if="isStudent()"style="overflow-y:auto;width:100%;height: 127px;">
         <h3>{{exercises[eIndex].name}}</h3>
         {{exercises[eIndex].text}}
     </div><!--     <div id="instructiontxt">  -->
 
-    <div id="instructiontxtTeacher" ng-if="isTeacher()" style="width: 100%;height: 77px;">
+    <div id="instructiontxtTeacher" ng-if="isTeacher()" style="background-color: lightgray;width: 100%;height: 77px;">
         <input style="width: 99%" ng-model="exercises[eIndex].name">
         <textarea style="width: 99%;">{{exercises[eIndex].text}}</textarea>
     </div>
