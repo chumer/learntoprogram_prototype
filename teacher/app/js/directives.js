@@ -52,8 +52,8 @@ angular.module('learntoprogram.directives', [])
             };
         });
 
-        $scope.isTeacher = function() {return "true";};
-        $scope.isStudent = function() {return "false";};
+        $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
+        $scope.isStudent = function() {return $scope.mode != 'Teacher';};
 
     })
     .directive('exercise', function() {
