@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('learntoprogram.directives', [])
+angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
     .controller('Navigation', function ($scope, $rootScope, $location) {
         $scope.isTeacher = function() {return $rootScope.loggedUser == 'teacher';};
         $scope.logout = function () {
