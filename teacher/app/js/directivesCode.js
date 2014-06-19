@@ -112,13 +112,11 @@ function addLog(kind, text) {
         editor.renderer.hideCursor();
     }
     editorIndex++;
-
-
 }
 
 
 
-function addLog(editor) {
+function sendCommand(editor) {
     var text = editor.getValue();
     if (text == '') {
         return;

@@ -1,25 +1,24 @@
 
 <div ng-controller="Exercise">
 
-    <div id="instructiontxtStudent" ng-if="isStudent()"style="overflow-y:auto;width:100%;height: 127px;padding-left: 5px; background-color: #F8F8F8;">
-        <h4>{{exercises[eIndex].name}}</h4>
+    <div id="instructiontxtStudent" ng-if="isStudent()"style="overflow-y:auto;width:100%;height: 127px;">
+        <h3>{{exercises[eIndex].name}}</h3>
         {{exercises[eIndex].text}}
     </div><!--     <div id="instructiontxt">  -->
 
     <div id="instructiontxtTeacher" ng-if="isTeacher()" style="width: 100%;height: 127px;">
-        <input style="width: 99%;padding-left: 5px;" ng-model="exercises[eIndex].name">
-        <textarea style="width: 99%;height: 117px;padding-left: 5px;">{{exercises[eIndex].text}}</textarea>
+        <input style="width: 99%" ng-model="exercises[eIndex].name">
+        <textarea style="width: 99%;height: 117px;">{{exercises[eIndex].text}}</textarea>
     </div>
 
-    <div id="btndiv" style="background-color:#F8F8F8; border-bottom-style: solid;border-bottom-width: 1px; border-bottom-color: darkgray; width: 100%;height: 23px" ng-if="isStudent()">
-    <div class="btn-group btn-group-xs" style="float: right; margin-right: 5px" >
+    <div class="btn-group btn-group-xs" style="float: right;" ng-if="isStudent()">
         <button type="button" class="btn btn-default"ng-click="prev()">
             <span class="glyphicon glyphicon-chevron-left"></span>
             previous</button>
-        <button type="button" class="btn btn-default" ng-click="next()" >next
+        <button type="button" class="btn btn-default" ng-click="next()">next
             <span class="glyphicon glyphicon-chevron-right"></span></button>
     </div>
-    </div>
+
     <div class="btn-group btn-group-xs" style="float: right;" ng-if="isTeacher()">
         <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-save"></span>

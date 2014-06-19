@@ -4,23 +4,24 @@
 
 
 angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
-    .controller('Navigation', function ($scope,$http, $rootScope, $location) {
-
-
+    .controller('Navigation', function ($scope, $rootScope, $location) {
         $scope.isTeacher = function() {return $rootScope.loggedUser == 'teacher';};
         $scope.logout = function () {
             $rootScope.loggedUser = '';
             $location.path( "/login");
 
 
-        };
-        $http.get('json/lectures.json').then(function(lectureResponse) {
-            $scope.lectures = lectureResponse.data;
+            $http.get('json/lectures.json').then(function(lectureResponse) {
+                $scope.lectures = lectureResponse.data;
 
-        });
+                $scope.eIndex = 0;
+                $rootScope.eIndex = 1;
 
-        })
-.directive('navigationBar', function() {
+
+            });
+
+        }})
+    .directive('navigationBar', function() {
         return {
             restrict: 'E',
             scope: {
@@ -30,16 +31,11 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             templateUrl : 'partials/navigation.html'
         };
     })
-    .controller('Workspace', function ($scope, $rootScope,$http, $location) {
+    .controller('Workspace', function ($scope, $rootScope, $location) {
         $scope.isSingle = function() {return $scope.mode == 'Single';};
         $scope.isMulti = function() {return $scope.mode == 'Multi';};
         $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
         $scope.isStudent = function() {return $scope.mode != 'Teacher';};
-
-        $http.get('json/lectures.json').then(function(lectureResponse) {
-            $scope.lectures = lectureResponse.data;
-
-        });
 
     })
     .directive('workspace', function() {
@@ -76,41 +72,31 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         };
     })
     .controller('Variables', function ($scope, $rootScope, $location) {
-
-        $scope.varsToShow = [];
-
-        $scope.originalVars = [];
-
-        for(var key in window) {
-            //here we read all the values from the window obj.
-            $scope.originalVars.push(window[key]);
-        }
-
-        $rootScope.calculateNewVariables = function(){
-
-            for(var key in window) {
-            if ( $scope.originalVars.indexOf('Sam') == -1) {
-                $scope.varsToShow.push(window[key]);
-            }
-            }
-        };
-
     })
     .directive('variables', function() {
         return {
             restrict: 'E',
-
+            scope: {
+            },
             templateUrl : 'partials/variables.html'
         };
     })
     .controller('ExerciseTree', function ($scope, $http,$rootScope, $location) {
+        $http.get('json/lectures.json').then(function(lectureResponse) {
+            $scope.lectures = lectureResponse.data;
 
+            $scope.eIndex = 0;
+            $rootScope.eIndex = 1;
+
+
+        });
 
     })
     .directive('exerciseTree', function() {
         return {
             restrict: 'E',
-
+            scope: {
+            },
             templateUrl : 'partials/exerciseTree.html'
         };
     })

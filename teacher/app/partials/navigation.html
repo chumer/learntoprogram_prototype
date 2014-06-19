@@ -1,41 +1,4 @@
 <!-- Static navbar -->
-
-
-<div class="modal fade" id="test_modal" style="width: 700px; height: 300px; background: #ffffff; margin-left: auto ; margin-right: auto">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">&times;</a>
-        <h3>Program Info</h3>
-    </div>
-    <div class="modal-body">
-        <p>dfjdsklgvjdfskgvdskf
-        \gkdfgdf\gbldfdfkgdsg
-        dsg
-        dsfg
-        dfg
-        dsfgls;dflgj;l'dfsgoperopgkrpogkrs;lgl;dsfkglv;kdfsgl;'skgldsfg
-        dsgp
-        dsfgdsk
-        fgpdskgkdlsl;gkdsl;fgkds;lfkdslkgl;erwgjkwoepjkgokewg
-        eglkegrlk</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn btn-primary" data-dismiss="modal">Close</a>
-
-    </div>
-</div>
-
-
-            <script type="text/javascript">
-                    $(document).ready(function(){
-
-                        $( "#programInfo" ).click(function() {
-                            $('#test_modal').modal('show');
-                        });
-                    });
-</script>
-
-
-
 <div class="navbar navbar-default navbar-static-top" role="navigation" ng-controller="Navigation">
     <div class="container">
         <div class="navbar-header">
@@ -54,8 +17,7 @@
                 <li class="dropdown">
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-
-                        <li><a id="programInfo">Program info</a></li>
+                        <li><a href="#">Program info</a></li>
                         <li><a href="#">About</a></li>
                         <li><a href="#">Functions</a></li>
                         <li class="divider"></li>
@@ -77,12 +39,12 @@
 
                 <li class="dropdown">
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">Exercises <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" ng-repeat="lecture in lectures">
 
-                        <li ng-repeat-start = "lecture in lectures" class="dropdown-header"><a href="#">{{lecture.id}}</a></li>
+                        <li class="dropdown-header"><a href="#">{{lecture.id}}</a></li>
                         <li class="divider"></li>
                         <li ng-repeat="exercise in lecture.exercises"><a href="#">{{exercise.name}}</a></li>
-                        <li class="divider" ng-repeat-end></li>
+                        <li class="divider"></li>
 
                     </ul>
                 </li>
