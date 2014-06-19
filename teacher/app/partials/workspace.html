@@ -26,9 +26,9 @@
 
 
 
-<div  id="workspace" ng-controller="Workspace" >
+<div  id="workspace"  ng-controller="Workspace" >
 
-    <div>
+    <div  class="splitterVertical" style="height: 100%">
 
         <div id="column1">
             <div class="workspace-item" style="height: 100px">
@@ -74,7 +74,7 @@
     });
 
     $(".splitterVertical").kendoSplitter({
-        orientation: "vertical",
-        panes: [ { scrollable: false }, {} ]
+        orientation: "horizontal",
+        panes: [ { collapsible: false, scrollable:false, size: "693px"}, {collapsible: true, scrollable:false } , {} ]
     });
 </script>
