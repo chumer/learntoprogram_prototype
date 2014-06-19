@@ -95,25 +95,62 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
 
         $scope.varsToShow = [];
 
-        $scope.originalVars = [];
-
-        for(var key in window) {
-            //here we read all the values from the window obj.
-            $scope.originalVars.push(window[key]);
-        }
 
         window.calculateNewVariables = function(){
-
+            var oldVarsToShow = $scope.varsToShow;
             $scope.varsToShow = [];
 
-            for(var key in window) {
+            if ($scope.blackList == undefined) {
+                $scope.blackList = [];
+                for(var key in window) {
+                    if (window.hasOwnProperty(key)) {
+                        $scope.blackList.push(key);
+                    }
+                }
+            }
 
-                     if ( $scope.originalVars.indexOf(key) == -1) {
-                        $scope.varsToShow += (window[key]);
+            for(var key in window) {
+                if (window.hasOwnProperty(key)) {
+                    var found = false;
+
+                    for (var i = 0; i < $scope.blackList.length; i++) {
+                        if ($scope.blackList[i] == key) {
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        console.log(key);
+                        $scope.varsToShow[key] = window[key];
+                    }
+                }
+            }
+
+            var variablesTable = document.getElementById("variablesTable");
+            for (var key in oldVarsToShow) {
+                if (oldVarsToShow.hasOwnProperty(key)) {
+                    variablesTable.deleteRow(0);
+                }
+            }
+
+            var i = 0;
+            for (var key in $scope.varsToShow) {
+                if ($scope.varsToShow.hasOwnProperty(key)) {
+                    var row = variablesTable.insertRow(i);
+                    var keyCell = row.insertCell(0);
+                    var clazz = "varDefault";
+                    if (oldVarsToShow != undefined &&  (!oldVarsToShow.hasOwnProperty(key) || oldVarsToShow[key] != $scope.varsToShow[key])) {
+                        clazz = "varHighlight";
                     }
 
+                    keyCell.innerHTML = "<div style='margin-left: 30px;'><span class='glyphicon glyphicon-tag'> </span>&nbsp;&nbsp;&nbsp;"+ key + " = " + $scope.varsToShow[key] + "</div>";
+                    keyCell.className = clazz;
+
+                    i++;
+                }
             }
         };
+        window.calculateNewVariables();
 
     })
     .directive('variables', function() {
