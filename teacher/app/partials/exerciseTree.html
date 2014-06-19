@@ -3,9 +3,9 @@
     <div id="lectureTree"  style="height: 320px;overflow-y: auto;position: relative">
     <div id="content" ng-repeat="lecture in lectures">
 
-    <h4> <span class="glyphicon glyphicon-folder-open"></span>   {{lecture.id}}</h4>
+    <h4 style="margin-left: 10px;"><span class="glyphicon glyphicon-folder-open" style="margin-right: 10px;"></span>{{lecture.id}}</h4>
 
-       <div ng-repeat="exercise in lecture.exercises">
+       <div ng-repeat="exercise in lecture.exercises" style="margin-left: 30px;">
              <span class="glyphicon glyphicon-list-alt"> </span>
                {{exercise.name}}
        </div>
@@ -17,12 +17,12 @@
         <button type="button" class="btn btn-default">
             <span class="glyphicon glyphicon-minus"></span>
            remove</button>
-        <button type="button" class="btn btn-default">add
+        <button type="button" class="btn btn-default" style="margin-right: 5px;">add
             <span class="glyphicon glyphicon-plus"></span></button>
     </div>
 
     <div class="btn-group btn-group-xs" style="float: left;">
-        <button type="button" class="btn btn-default">
+        <button type="button" class="btn btn-default" style="margin-left: 5px;">
             <span class="glyphicon glyphicon-globe"></span>
             share</button>
 

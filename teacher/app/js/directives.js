@@ -4,24 +4,23 @@
 
 
 angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
-    .controller('Navigation', function ($scope, $rootScope, $location) {
+    .controller('Navigation', function ($scope,$http, $rootScope, $location) {
+
+
         $scope.isTeacher = function() {return $rootScope.loggedUser == 'teacher';};
         $scope.logout = function () {
             $rootScope.loggedUser = '';
             $location.path( "/login");
 
 
-            $http.get('json/lectures.json').then(function(lectureResponse) {
-                $scope.lectures = lectureResponse.data;
+        };
+        $http.get('json/lectures.json').then(function(lectureResponse) {
+            $scope.lectures = lectureResponse.data;
 
-                $scope.eIndex = 0;
-                $rootScope.eIndex = 1;
+        });
 
-
-            });
-
-        }})
-    .directive('navigationBar', function() {
+        })
+.directive('navigationBar', function() {
         return {
             restrict: 'E',
             scope: {
@@ -31,11 +30,16 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
             templateUrl : 'partials/navigation.html'
         };
     })
-    .controller('Workspace', function ($scope, $rootScope, $location) {
+    .controller('Workspace', function ($scope, $rootScope,$http, $location) {
         $scope.isSingle = function() {return $scope.mode == 'Single';};
         $scope.isMulti = function() {return $scope.mode == 'Multi';};
         $scope.isTeacher = function() {return $scope.mode == 'Teacher';};
         $scope.isStudent = function() {return $scope.mode != 'Teacher';};
+
+        $http.get('json/lectures.json').then(function(lectureResponse) {
+            $scope.lectures = lectureResponse.data;
+
+        });
 
     })
     .directive('workspace', function() {
@@ -84,21 +88,13 @@ angular.module('learntoprogram.directives', ['learntoprogram.directivesCode'])
         };
     })
     .controller('ExerciseTree', function ($scope, $http,$rootScope, $location) {
-        $http.get('json/lectures.json').then(function(lectureResponse) {
-            $scope.lectures = lectureResponse.data;
 
-            $scope.eIndex = 0;
-            $rootScope.eIndex = 1;
-
-
-        });
 
     })
     .directive('exerciseTree', function() {
         return {
             restrict: 'E',
-            scope: {
-            },
+
             templateUrl : 'partials/exerciseTree.html'
         };
     })
