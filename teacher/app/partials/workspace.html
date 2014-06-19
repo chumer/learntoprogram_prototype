@@ -1,16 +1,12 @@
 
 
-<!--<script>-->
-    <!--$("#splitter").kendoSplitter({-->
-        <!--orientation: "vertical"-->
-    <!--});-->
-
-<!--</script>-->
 
 
-<div id="workspace" ng-controller="Workspace">
 
-    <div >
+
+<div class="splitterVertical" id="workspace" ng-controller="Workspace">
+
+    <div class="splitter" >
     <div class="workspace-item">
         <exercise></exercise>
     </div>
@@ -24,7 +20,7 @@
     </div>
 
 
-    <div>
+    <div class="splitter">
     <div class="workspace-item">
         <single-code ng-if="isSingle()" ></single-code>
         <multi-code ng-if="isMulti() || isTeacher()" ></multi-code>
@@ -36,3 +32,16 @@
     </div>
     </div>
 </div>
+
+
+<script>
+    $(".splitter").kendoSplitter({
+        orientation: "horizontal",
+        panes: [ { scrollable: false }, {} ]
+    });
+
+    $(".splitterVertical").kendoSplitter({
+        orientation: "vertical",
+        panes: [ { scrollable: false }, {} ]
+    });
+</script>
