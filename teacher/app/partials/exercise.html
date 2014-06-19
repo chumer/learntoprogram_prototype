@@ -1,14 +1,14 @@
 
 <div ng-controller="Exercise">
 
-    <div id="instructiontxtStudent" ng-if="isStudent()"style="position: relative">
+    <div id="instructiontxtStudent" ng-if="isStudent()"style="position: relative;height: 100px;">
         <h3>{{exercises[eIndex].name}}</h3>
         {{exercises[eIndex].text}}
     </div><!--     <div id="instructiontxt">  -->
 
-    <div id="instructiontxtTeacher" ng-if="isTeacher()" style="position: relative">
+    <div id="instructiontxtTeacher" ng-if="isTeacher()" style="position: relative;height: 100px;">
         <input style="width: 100%" ng-model="exercises[eIndex].name">
-        <textarea style="width: 100%;height: 200px">{{exercises[eIndex].text}}</textarea>
+        <textarea style="width: 100%;height: 75px">{{exercises[eIndex].text}}</textarea>
     </div>
 
     <div class="btn-group btn-group-xs" style="float: right;bottom:0;" ng-if="isStudent()">
