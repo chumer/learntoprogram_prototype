@@ -1,7 +1,7 @@
 angular.module('learntoprogram.directivesCode', [])
     .controller('SingleCode', function ($scope, $rootScope, $location) {
         $scope.send = function() {
-            sendWithButton($scope);
+            sendWithButton(inputEditor);
         };
     })
     .directive('singleCode', function() {
@@ -32,13 +32,13 @@ function sendWithButton($scope) {
 }
 
 function initEditor($scope) {
-    currentScope = $scope;
     inputEditor = ace.edit("inputEditor")
     inputEditor.setHighlightActiveLine(false);
     inputEditor.renderer.setShowGutter(false);
     //editor.setTheme("ace/theme/monokai");
     inputEditor.getSession().setMode("ace/mode/javascript");
     inputEditor.focus();
+    inputEditor.scope = $scope;
 
     function scrollHistoryUp(editor) {
         if (historyIndex <= 0) {
@@ -58,26 +58,35 @@ function initEditor($scope) {
         editor.setValue(history[historyIndex]);
     }
 
-    inputEditor.commands.addCommand({
-        name: 'send',
-        bindKey: {win: 'Return',  mac: 'Return'},
-        exec: sendCommand,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
+    if ($scope.isSingle()) {
+        inputEditor.commands.addCommand({
+            name: 'send',
+            bindKey: {win: 'Return',  mac: 'Return'},
+            exec: sendCommand,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
 
-    inputEditor.commands.addCommand({
-        name: 'historyUp',
-        bindKey: {win: 'up',  mac: 'up'},
-        exec: scrollHistoryUp,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
+        inputEditor.commands.addCommand({
+            name: 'historyUp',
+            bindKey: {win: 'up',  mac: 'up'},
+            exec: scrollHistoryUp,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
 
-    inputEditor.commands.addCommand({
-        name: 'historyDown',
-        bindKey: {win: 'down',  mac: 'down'},
-        exec: scrollHistoryDown,
-        readOnly: false// false if this command should not apply in readOnly mode
-    });
+        inputEditor.commands.addCommand({
+            name: 'historyDown',
+            bindKey: {win: 'down',  mac: 'down'},
+            exec: scrollHistoryDown,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
+    } else {
+        inputEditor.commands.addCommand({
+            name: 'send',
+            bindKey: {win: 'Ctrl-Return',  mac: 'Ctrl-Return'},
+            exec: sendCommand,
+            readOnly: false// false if this command should not apply in readOnly mode
+        });
+    }
 }
 
 function addLog(kind, text) {
@@ -111,6 +120,14 @@ function addLog(kind, text) {
     editorIndex++;
 }
 
+function clearLog() {
+    var outputTable = document.getElementById("outputTable");
+    for (var i = 0; i < editorIndex; i++) {
+        outputTable.deleteRow(i);
+    }
+    editorIndex = 0;
+}
+
 function sendCommand(editor) {
     var text = editor.getValue();
     if (text == '') {
@@ -121,18 +138,21 @@ function sendCommand(editor) {
     }
     historyIndex = history.length;
 
-    editor.setValue("");
-    addLog("In: ", text);
+    if (editor.scope.isSingle()) {
+        editor.setValue("");
+        addLog("In: ", text);
+    } else {
+        clearLog();
+    }
 
     try {
         var output = window.eval(text);
-
-        if (currentScope.notifyVariables != undefined) {
-            currentScope.notifyVariables();
-        }
-
-        if (output != undefined) {
-            addLog("Out: ", output + "");
+        if (output != undefined || !editor.scope.isSingle()) {
+            if (typeof output == "string") {
+                addLog("Out: ", "\"" + output + "\"");
+            } else {
+                addLog("Out: ", output + "");
+            }
         }
     } catch (err) {
         addLog("Error: ",  err);
