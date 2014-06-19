@@ -1,5 +1,5 @@
 [
     {"name": "Exercise 1", "text": "Create two local variables named a and b and assign the values 5 and 3, create a third variable named c and assign the addition of the first two." },
-    {"name": "Exercise 2", "text": "Which day of the week (as number) do we have today?" },
+    {"name": "Exercise 2", "text": "Which day of the week (as number) do we have today? hint: You can use the Date type (the 'new Date()' creates a date) and call the getDay function on that object. Assign the value to a variable called name." },
     {"name": "Exercise 3", "text": "In this exercise you have to define a function and it must be named 'GetDayName'. The function has one parameter which is a number and it returns a string. The function gets the number of the current weekday and returns its name as string. After you defined this function retrieve the number of the current day and pass it as a parameter to the function. As a result you should see the name of the current day."}
 ]
