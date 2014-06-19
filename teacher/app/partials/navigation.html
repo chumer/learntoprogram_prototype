@@ -39,11 +39,13 @@
 
                 <li class="dropdown">
                     <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">Exercises <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Exercise 1</a></li>
-                        <li><a href="#">Exercise 2</a></li>
-                        <li><a href="#">Exercise 3</a></li>
+                    <ul class="dropdown-menu" ng-controller="ExerciseTree">
+                        <div id="tree" ng-repeat="lecture in lectures ">
+                        <li><a href="#">{{lecture.id}}</a></li>
                         <li class="divider"></li>
+                        <li ng-repeat="exercise in lecture.exercises"><a href="#">{{exercise.name}}</a></li>
+                        <li class="divider"></li>
+                        </div>
                     </ul>
                 </li>
                 <li><a href="{{logout}}">Logout</a></li>
